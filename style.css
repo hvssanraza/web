@@ -146,7 +146,7 @@ body {
 }
 .book-button {
     position: fixed; /* Fix the button at the top of the page */
-    top: 80%; /* Adjust to place the button above the footer */
+    top: 80%; /* Adjust for larger screens */
     left: 50%;
     transform: translateX(-50%); /* Center the button horizontally */
     background: var(--heart-color);
@@ -166,6 +166,14 @@ body {
     color: var(--txt-color);
     transform: translateX(-50%) scale(1.1); /* Only scale without shifting horizontally */
 }
+
+/* Adjust for mobile devices */
+@media (max-width: 600px) {
+    .book-button {
+        top: 90%; /* Increase the top value to create more space on mobile */
+    }
+}
+
 
 
 
