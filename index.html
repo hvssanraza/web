@@ -2,52 +2,279 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Love</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Love Letter Envelope</title>
+    <style>
+        :root {
+            --primary: #fff;
+            --bg-color: #f8e8ee; /* Soft romantic pink */
+            --envelope-color: #f9d5e5; /* Lighter pink for envelope */
+            --envelope-accent: #e75480; /* Romantic pink accent */
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --txt-color: #5a3756; /* Deep mauve for text */
+            --heart-color: #ff4d6d; /* Vibrant pink heart */
+            --flap-color: #f5b5c8; /* Slightly darker flap */
+            --button-color: #e75480; /* Matching accent color */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--envelope-accent);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px var(--shadow-color);
+        }
+
+        .header p {
+            color: var(--txt-color);
+            font-size: 1rem;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            height: 220px;
+            margin: 0 auto 40px;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .envelope.open {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-front, .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .envelope-front {
+            background: linear-gradient(135deg, var(--envelope-color) 0%, var(--flap-color) 100%);
+            transform-origin: top;
+            z-index: 2;
+        }
+
+        .envelope-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 100px solid var(--flap-color);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+            z-index: 3;
+        }
+
+        .envelope.open .envelope-front::before {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-back {
+            background: var(--envelope-color);
+            transform: rotateX(180deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .letter {
+            width: 90%;
+            height: 90%;
+            background: var(--primary);
+            padding: 15px;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            overflow-y: auto;
+        }
+
+        .letter-content {
+            color: var(--txt-color);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background: var(--heart-color);
+            transform: translate(-50%, -50%) rotate(45deg);
+            z-index: 4;
+            transition: all 0.5s ease;
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--heart-color);
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -15px;
+        }
+
+        .envelope.open .heart {
+            opacity: 0;
+            transform: translate(-50%, -50%) rotate(45deg) scale(0);
+        }
+
+        .book-button {
+            display: inline-block;
+            padding: 12px 30px;
+            margin-top: 30px;
+            background: var(--button-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .book-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            background: #d1426f;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--txt-color);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .envelope-container {
+                max-width: 280px;
+                height: 190px;
+                margin-bottom: 30px;
+            }
+
+            .letter-content {
+                font-size: 0.8rem;
+            }
+
+            .heart {
+                width: 25px;
+                height: 25px;
+            }
+
+            .heart:before, .heart:after {
+                width: 25px;
+                height: 25px;
+            }
+
+            .heart:before {
+                top: -12.5px;
+            }
+
+            .heart:after {
+                left: -12.5px;
+            }
+
+            .book-button {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+                margin-top: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <!-- Added Heading -->
+<div class="header">
+    <h1>Strictly for STHK</h1>
+    <p>Click the envelope to open</p>
+</div>
 
-    <br>
-    <br>
-    <h1 class="love-heading">Strictly for STHK</h1>
-
-    <div class="envelope-wrapper">
-        <div class="envelope">
+<div class="envelope-container">
+    <div class="envelope">
+        <div class="envelope-front">
+            <div class="heart"></div>
+        </div>
+        <div class="envelope-back">
             <div class="letter">
-                <div class="text">
-                    <strong>Dear Tooba Hassan,</strong>
-                    <p>
-                        For you, I would give everything I could,<br>
-                        Because you are my everything. <br>
-                        Here's to our 2nd month anniversary. <br>
-                        I love you <3
-                    </p>
+                <div class="letter-content">
+                    <p>Dear Loved One,</p>
+                    <p>This letter carries my warmest thoughts and affection for you. No matter the distance or time, my heart remains yours.</p>
+                    <p>With all my love,</p>
+                    <p>Me</p>
                 </div>
             </div>
         </div>
-        <div class="heart"></div>
     </div>
-
-    <!-- Added Get the Book button above the footer -->
-    <a href="https://www.fb.com" target="_blank" class="book-button">📖 Get the Book</a>
 </div>
 
-<script>
-    const envelope = document.querySelector('.envelope-wrapper');
-    envelope.addEventListener('click', () => {
-        envelope.classList.toggle('flap');
-    });
-</script>
+<a href="https://example.com/book" class="book-button">Get the Book</a>
 
-<!-- Footer with the "Made with love" text -->
 <footer>
-    <p>Made with Love by Hassan for You</p>
+    <p>Made with ❤️ by Hassan for You</p>
 </footer>
 
-
+<script>
+    document.querySelector('.envelope').addEventListener('click', function() {
+        this.classList.toggle('open');
+    });
+</script>
 </body>
 </html>
