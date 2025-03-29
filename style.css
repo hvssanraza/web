@@ -21,7 +21,7 @@
     text-shadow: 2px 2px 5px var(--shadow-color);
     position: relative;
     width: 100%;
-    z-index: 10; /* Ensures it stays on top */
+    z-index: 1; /* Ensures it stays on top */
 }
 
 body {
@@ -70,13 +70,14 @@ body {
 .envelope::before {
     content: "";
     position: absolute;
-    top: 0;
+    top: -1px; /* Adjust this value if needed */
     z-index: 2;
-    border-top: 130px solid var(--envelope-tab);
+    border-top: 135px solid var(--envelope-tab); /* Increase by 5px */
     border-right: 150px solid transparent;
     border-left: 150px solid transparent;
     transform-origin: top;
     transition: all 0.5s ease-in-out 0.7s;
+
 }
 
 /* Bottom Envelope */
@@ -104,6 +105,8 @@ body {
     transition: all 1s ease-in-out;
     box-shadow: 0 0 5px var(--shadow-color);
     padding: 20px 10px;
+    z-index: 1;
+
 }
 
 .text {
