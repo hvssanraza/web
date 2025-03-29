@@ -27,7 +27,7 @@ body {
     box-sizing: border-box;
     background: var(--bg-color);
     display: flex;
-    flex-direction: column; /* Stack heading and envelope */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -38,6 +38,7 @@ body {
     z-index: 1;
 }
 
+/* Lowered the envelope */
 .envelope-wrapper {
     background: var(--bg-envelope-color);
     box-shadow: 0 0 40px var(--shadow-color);
@@ -46,8 +47,8 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1;
-    margin-top: 30px; /* Moves the envelope down */
-    margin-bottom: 20px; /* Prevents overlap */
+    margin-top: 60px; /* Increased margin to move it further down */
+    margin-bottom: 20px;
 }
 
 .envelope {
@@ -149,11 +150,10 @@ body {
 }
 
 .book-button {
-    position: fixed; /* Fix the button at the top of the page */
-    top: 80%; /* Adjust for larger screens */
+    position: fixed;
+    top: 80%;
     left: 50%;
-
-    transform: translateX(-50%); /* Center the button horizontally */
+    transform: translateX(-50%);
     background: var(--heart-color);
     color: var(--primary);
     padding: 10px 20px;
@@ -162,36 +162,37 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     text-decoration: none;
-    z-index: 6; /* Ensure it appears above the envelope */
-    transition: transform 0.2s ease-in-out; /* Smooth scaling transition */
+    z-index: 6;
+    transition: transform 0.2s ease-in-out;
 }
 
 .book-button:hover {
     background: var(--bg-envelope-color);
     color: var(--txt-color);
-    transform: translateX(-50%) scale(1.1); /* Only scale without shifting horizontally */
+    transform: translateX(-50%) scale(1.1);
 }
 
 /* Adjust for mobile devices */
 @media (max-width: 600px) {
     body {
-        flex-direction: column; /* Stack elements vertically */
-        justify-content: flex-start; /* Align items to the top */
-        align-items: center; /* Keep everything centered */
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     .book-button {
-        top: 75%; /* Adjust the top value to make the button more visible on mobile */
+        top: 75%;
     }
 
     .container {
         position: relative;
         z-index: 1;
-        margin-top: 20px; /* Add space between envelope and button */
+        margin-top: 20px;
     }
 
+    /* Lower the envelope further on mobile */
     .envelope-wrapper {
-        margin-top: 20px; /* Ensure some space between the envelope and button */
+        margin-top: 80px;
     }
 }
 
