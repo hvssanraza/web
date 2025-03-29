@@ -174,25 +174,17 @@ body {
 
 /* Adjust for mobile devices */
 @media (max-width: 600px) {
-    body {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .book-button {
-        top: 75%;
-    }
-
-    .container {
-        position: relative;
-        z-index: 1;
-        margin-top: 20px;
-    }
-
-    /* Lower the envelope further on mobile */
     .envelope-wrapper {
-        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 50px; /* Adjust this value to lower the envelope */
+    }
+
+    .envelope {
+        width: 250px; /* Ensure it scales properly */
+        height: 200px;
     }
 }
 
