@@ -168,11 +168,13 @@ body {
 }
 
 /* Adjust for mobile devices */
+
 @media (max-width: 600px) {
     .book-button {
-        top: 90%; /* Increase the top value to create more space on mobile */
+        top: 75%; /* Adjust the top value to make the button more visible on mobile */
     }
 }
+
 
 
 
