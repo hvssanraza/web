@@ -70,7 +70,7 @@ body {
 .envelope::before {
     content: "";
     position: absolute;
-    top: 1px; /* Adjust this value if needed */
+    top: -4px; /* Adjust this value if needed */
     left: 0;
     right: 0px;
     z-index: 4;
