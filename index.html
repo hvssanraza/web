@@ -9,6 +9,9 @@
 </head>
 <body>
 <div class="container">
+    <!-- Added Heading -->
+    <h1 class="love-heading">Strictly for STHK</h1>
+
     <div class="envelope-wrapper">
         <div class="envelope">
             <div class="letter">
@@ -23,12 +26,22 @@
         </div>
         <div class="heart"></div>
     </div>
+
+    <!-- Added Get the Book button above the footer -->
+    <a href="YOUR_BOOK_LINK" target="_blank" class="book-button">📖 Get the Book</a>
 </div>
+
 <script>
     const envelope = document.querySelector('.envelope-wrapper');
     envelope.addEventListener('click', () => {
         envelope.classList.toggle('flap');
     });
 </script>
+
+<!-- Footer with the "Made with love" text -->
+<footer class="footer-text">
+    <p>Made with love by Hassan</p>
+</footer>
+
 </body>
 </html>
