@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Letter Envelope</title>
+    <title>For STHK - Special Envelope</title>
     <style>
         :root {
             --primary: #fff;
-            --bg-color: #f8e8ee; /* Soft romantic pink */
-            --envelope-color: #f9d5e5; /* Lighter pink for envelope */
-            --envelope-accent: #e75480; /* Romantic pink accent */
+            --bg-color: #f8e8ee;
+            --envelope-color: #f9d5e5;
+            --envelope-accent: #e75480;
             --shadow-color: rgba(0, 0, 0, 0.1);
-            --txt-color: #5a3756; /* Deep mauve for text */
-            --heart-color: #ff4d6d; /* Vibrant pink heart */
-            --flap-color: #f5b5c8; /* Slightly darker flap */
-            --button-color: #e75480; /* Matching accent color */
+            --txt-color: #5a3756;
+            --heart-color: #ff4d6d;
+            --flap-color: #f5b5c8;
+            --button-color: #e75480;
         }
 
         * {
@@ -32,10 +32,10 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
+            text-align: center;
         }
 
         .header {
-            text-align: center;
             margin-bottom: 30px;
         }
 
@@ -49,6 +49,7 @@
         .header p {
             color: var(--txt-color);
             font-size: 1rem;
+            margin-bottom: 5px;
         }
 
         .envelope-container {
@@ -56,8 +57,8 @@
             width: 100%;
             max-width: 320px;
             height: 220px;
-            margin: 0 auto 40px;
-            perspective: 1000px;
+            margin: 0 auto 30px;
+            perspective: 1200px;
         }
 
         .envelope {
@@ -65,7 +66,7 @@
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
-            transition: transform 0.5s ease;
+            transition: transform 0.8s ease;
             cursor: pointer;
         }
 
@@ -86,24 +87,24 @@
             background: linear-gradient(135deg, var(--envelope-color) 0%, var(--flap-color) 100%);
             transform-origin: top;
             z-index: 2;
+            overflow: hidden;
         }
 
-        .envelope-front::before {
-            content: '';
+        /* Fixed Flap Implementation */
+        .flap {
             position: absolute;
             top: 0;
             left: 0;
-            width: 0;
-            height: 0;
-            border-left: 160px solid transparent;
-            border-right: 160px solid transparent;
-            border-top: 100px solid var(--flap-color);
+            width: 100%;
+            height: 50%;
+            background: var(--flap-color);
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
             transform-origin: top;
-            transition: transform 0.5s ease;
+            transition: transform 0.8s ease;
             z-index: 3;
         }
 
-        .envelope.open .envelope-front::before {
+        .envelope.open .flap {
             transform: rotateX(180deg);
         }
 
@@ -130,6 +131,7 @@
             color: var(--txt-color);
             font-size: 0.9rem;
             line-height: 1.5;
+            text-align: left;
         }
 
         .heart {
@@ -172,7 +174,7 @@
         .book-button {
             display: inline-block;
             padding: 12px 30px;
-            margin-top: 30px;
+            margin: 20px 0;
             background: var(--button-color);
             color: white;
             text-decoration: none;
@@ -180,7 +182,6 @@
             border-radius: 25px;
             box-shadow: 0 4px 10px var(--shadow-color);
             transition: all 0.3s ease;
-            text-align: center;
         }
 
         .book-button:hover {
@@ -190,25 +191,26 @@
         }
 
         footer {
-            margin-top: 40px;
-            text-align: center;
+            margin-top: 20px;
             color: var(--txt-color);
             font-size: 0.8rem;
         }
 
         @media (max-width: 480px) {
             .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .header p {
-                font-size: 0.9rem;
+                font-size: 1.7rem;
             }
 
             .envelope-container {
                 max-width: 280px;
                 height: 190px;
-                margin-bottom: 30px;
+                margin-bottom: 25px;
+                perspective: 1000px;
+            }
+
+            .flap {
+                height: 45%;
+                clip-path: polygon(0 0, 50% 45%, 100% 0);
             }
 
             .letter-content {
@@ -236,7 +238,6 @@
             .book-button {
                 padding: 10px 25px;
                 font-size: 0.9rem;
-                margin-top: 20px;
             }
         }
     </style>
@@ -250,15 +251,16 @@
 <div class="envelope-container">
     <div class="envelope">
         <div class="envelope-front">
+            <div class="flap"></div>
             <div class="heart"></div>
         </div>
         <div class="envelope-back">
             <div class="letter">
                 <div class="letter-content">
-                    <p>Dear Loved One,</p>
-                    <p>This letter carries my warmest thoughts and affection for you. No matter the distance or time, my heart remains yours.</p>
-                    <p>With all my love,</p>
-                    <p>Me</p>
+                    <p>Dear STHK,</p>
+                    <p>This special message is just for you. Wishing you all the happiness in the world.</p>
+                    <p>With love,</p>
+                    <p>Hassan</p>
                 </div>
             </div>
         </div>
@@ -268,13 +270,19 @@
 <a href="https://example.com/book" class="book-button">Get the Book</a>
 
 <footer>
-    <p>Made with ❤️ by Hassan for You</p>
+    <p>Made with 💬 by Hassan for You</p>
 </footer>
 
 <script>
     document.querySelector('.envelope').addEventListener('click', function() {
         this.classList.toggle('open');
     });
+
+    // Improved mobile touch handling
+    document.querySelector('.envelope').addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        this.classList.toggle('open');
+    }, { passive: false });
 </script>
 </body>
 </html>
