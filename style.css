@@ -19,10 +19,9 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 2px 2px 5px var(--shadow-color);
-    position: relative; /* Ensures it stays in normal document flow */
-    top: 20px; /* Adds spacing from the top */
+    position: relative;
     width: 100%;
-
+    z-index: 10; /* Ensures it stays on top */
 }
 
 body {
@@ -34,25 +33,30 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
+/* Container to wrap everything */
 .container {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-/* Lowered the envelope */
-envelope-wrapper {
+/* Envelope Wrapper - Fixes Positioning */
+.envelope-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 80px); /* Reserves space for the header */
-    position: absolute;
-    top: 80px; /* Pushes it below the header */
-    transform: translateY(0); /* No longer needed since we're manually positioning it */
+    height: auto; /* Ensures it doesn't take full viewport height */
+    margin-top: 20px; /* Adjust this to space it properly */
+    position: relative;
 }
+
 .envelope {
     position: relative;
     width: 300px;
@@ -62,6 +66,7 @@ envelope-wrapper {
     align-items: center;
 }
 
+/* Flap (Top Part of the Envelope) */
 .envelope::before {
     content: "";
     position: absolute;
@@ -74,6 +79,7 @@ envelope-wrapper {
     transition: all 0.5s ease-in-out 0.7s;
 }
 
+/* Bottom Envelope */
 .envelope::after {
     content: "";
     position: absolute;
@@ -86,6 +92,7 @@ envelope-wrapper {
     border-left: 150px solid var(--envelope-cover);
 }
 
+/* Letter */
 .letter {
     position: absolute;
     right: 20%;
@@ -106,6 +113,7 @@ envelope-wrapper {
     font-size: 10px;
 }
 
+/* Heart */
 .heart {
     position: absolute;
     top: 50%;
@@ -138,6 +146,7 @@ envelope-wrapper {
     right: 7.5px;
 }
 
+/* Flap Animation */
 .flap > .envelope::before {
     transform: rotateX(180deg);
     z-index: 0;
@@ -154,11 +163,10 @@ envelope-wrapper {
     transition-delay: 0.4s;
 }
 
+/* Get Book Button */
 .book-button {
-    position: fixed;
-    top: 80%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin-top: 20px; /* Spaces it from envelope */
     background: var(--heart-color);
     color: var(--primary);
     padding: 10px 20px;
@@ -174,16 +182,12 @@ envelope-wrapper {
 .book-button:hover {
     background: var(--bg-envelope-color);
     color: var(--txt-color);
-    transform: translateX(-50%) scale(1.1);
+    transform: scale(1.1);
 }
 
-/* Adjust for mobile devices */
+/* Responsive Design */
 @media (max-width: 600px) {
     .envelope-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
         margin-top: 50px; /* Adjust this value to lower the envelope */
     }
 
@@ -193,7 +197,7 @@ envelope-wrapper {
     }
 }
 
-/* Footer adjustments */
+/* Footer */
 footer {
     text-align: center;
     padding: 10px;
