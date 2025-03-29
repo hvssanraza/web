@@ -111,6 +111,7 @@ body {
     box-shadow: 0 1px 6px var(--shadow-color);
     cursor: pointer;
 }
+
 .heart:before,
 .heart:after {
     content: "";
@@ -120,14 +121,14 @@ body {
     background-color: var(--heart-color);
     border-radius: 50%;
 }
+
 .heart:before {
     top: -7.5px;
 }
+
 .heart:after {
     right: 7.5px;
 }
-
-
 
 .flap > .envelope::before {
     transform: rotateX(180deg);
@@ -144,6 +145,7 @@ body {
     transform: rotate(90deg);
     transition-delay: 0.4s;
 }
+
 .book-button {
     position: fixed; /* Fix the button at the top of the page */
     top: 80%; /* Adjust for larger screens */
@@ -168,18 +170,27 @@ body {
 }
 
 /* Adjust for mobile devices */
-
 @media (max-width: 600px) {
+    body {
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: flex-start; /* Align items to the top */
+        align-items: center; /* Keep everything centered */
+    }
+
     .book-button {
         top: 75%; /* Adjust the top value to make the button more visible on mobile */
     }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        margin-top: 20px; /* Add space between envelope and button */
+    }
+
+    .envelope-wrapper {
+        margin-top: 20px; /* Ensure some space between the envelope and button */
+    }
 }
-
-
-
-
-
-
 
 /* Footer adjustments */
 footer {
