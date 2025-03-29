@@ -72,7 +72,7 @@ body {
     position: absolute;
     top: 2px; /* Adjust this value if needed */
     left: 0;
-    right: 0px;
+
     z-index: 4;
     border-top: 135px solid var(--envelope-tab); /* Increase by 5px */
     border-right: 150px solid transparent;
