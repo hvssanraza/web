@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="208cdeab-70ed-4435-b549-9159f7fe9ac5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743231080065</updated>
-      <workItem from="1743231081201" duration="8251000" />
+      <workItem from="1743231081201" duration="8591000" />
     </task>
     <servers />
   </component>
