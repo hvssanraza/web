@@ -45,8 +45,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
     z-index: 1;
+    margin-top: 30px; /* Moves the envelope down */
+    margin-bottom: 20px; /* Prevents overlap */
 }
 
 .envelope {
@@ -151,6 +152,7 @@ body {
     position: fixed; /* Fix the button at the top of the page */
     top: 80%; /* Adjust for larger screens */
     left: 50%;
+
     transform: translateX(-50%); /* Center the button horizontally */
     background: var(--heart-color);
     color: var(--primary);
