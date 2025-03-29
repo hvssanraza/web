@@ -70,14 +70,14 @@ body {
 .envelope::before {
     content: "";
     position: absolute;
-    top: -4px; /* Adjust this value if needed */
+    top: -10px; /* Adjust this value if needed */
     left: 0;
     right: 0px;
     z-index: 4;
     border-top: 135px solid var(--envelope-tab); /* Increase by 5px */
     border-right: 150px solid transparent;
     border-left: 150px solid transparent;
-    transform-origin: top;
+    transform-origin: bottom center;
     transition: all 0.5s ease-in-out 0.7s;
 
 }
